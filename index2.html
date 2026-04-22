@@ -33,12 +33,17 @@
     </footer>
     <script>
         let tarefas = [];
-
+        let editandoIndex = null;
         function adicionarTarefa(){
             const input = document.getElementById('tarefaInput');
             const tarefa = input.value.trim(); // remove espaços desnecessarios
             if(tarefa){
-                tarefas.push(tarefa); // adiciona o valor no final da lista
+                if(editandoIndex === null){
+                    tarefas.push(tarefa); // adiciona o valor no final da lista
+                }else{
+                    tarefas[editandoIndex] = tarefa;
+                    editandoIndex = null;
+                }
                 input.value = ''; // para que depois que a tarefa for adiciionada o campo do input vai voltar vazio
                 atualizarLista(); // função que ainda vamos criar
             }
@@ -49,12 +54,21 @@
             atualizarLista(); //funcao que ainda vamos criar
         }
 
+        function editarTarefa(index){
+            const input = document.getElementById('tarefaInput');
+            input.value = tarefas[index]; //posicao da tarefa no vetor
+            editandoIndex = index
+        }
+
         function atualizarLista(){
             const lista = document.getElementById('listaTarefas');
             lista.innerHTML = '';
             tarefas.forEach((tarefa,index) => {
                 const li = document.createElement('li'); //li é cada elemento de uma lista
-                li.innerHTML=`${tarefa} <button onclick="removerTarefa(${index})">Remover</button>`;
+                li.innerHTML=`${tarefa} 
+                <button onclick="editarTarefa(${index})">Editar</button>
+                <button onclick="removerTarefa(${index})">Remover</button>`;
+                
                 lista.appendChild(li);
             })
         }

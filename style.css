@@ -20,6 +20,9 @@ html, body{
     
 }
 
+.cabecalho a{
+    text-decoration: none;
+}
 .cabecalho h1{
     align-items: center;
     position: absolute;
@@ -38,12 +41,13 @@ html, body{
     background-color: rgb(144, 182, 218);
     border: 2px solid;
     border-radius: 10px;
-    max-width: 300px;
+    /* max-width: 300px; */
     justify-content: center;
     align-items: center;
-    display: inline-block;
+    display: block;
     padding: 10px;
     margin: 175px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     
 }
 
@@ -52,11 +56,29 @@ footer{
     display: flex;
     margin-top: auto;
     flex-direction: column;
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
     height: auto;
 }
 
+.texto{
+    text-align: left;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    min-width: 0;
+    display: block;
+    white-space: normal;
+}
 
+.acoes{
+    display: flex;
+    gap: 10px;
+    margin-left: 10px;
+}
 
+.tarefa{
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 120px;
+    width: 100%;
+}
